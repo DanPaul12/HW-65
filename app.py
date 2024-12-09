@@ -32,13 +32,6 @@ def handle_message(data):
     socketio.emit('message', {'username': user, 'message': message})
 
 
-@socketio.on('get_user_messages')
-def handle_get_user_messages(data):
-    user = data.get('user')
-    user_messages = message_storage.get(user, [])
-    socketio.emit('get_user_messages', {'user': user, 'messages': user_messages})
-
-
 @app.route('/')
 def index():
     return render_template('WebChatRoom.html')
